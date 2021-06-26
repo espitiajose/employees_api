@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon -r dotenv/config app"
+    "test": "nodemon -r dotenv/config app",
+    "start": "node -r dotenv/config app",
+    "build": "webpack"
   },
   "dependencies": {
     "cors": "^2.8.5",
