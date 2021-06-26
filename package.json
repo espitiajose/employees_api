@@ -2,10 +2,9 @@
   "name": "cidenet_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r dotenv/config app"
+    "test": "nodemon -r dotenv/config app"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -18,6 +17,12 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "engines": {
+    "node": "14.x"
   },
   "author": "Jose Espitia",
   "license": "ISC"
