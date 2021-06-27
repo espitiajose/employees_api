@@ -4,9 +4,10 @@ const Employee = require('../models/employee');
 const employeeCreate = async (req = request, res = response) => {
 
     const {surname, first_name, country} = req.body; 
-    let email = `${first_name}.${surname}@cidenet.com.${country}`.toLowerCase();
-    const count = await Employee.countDocuments({email: email});
-    if(count > 0) email = `${first_name}.${surname}${count}@cidenet.com.${country}`.toLowerCase();
+    const count = await Employee.countDocuments({email: { $regex: '.*' + `${first_name}.${surname}`.toLowerCase() + '.*' }, country });
+    let email = '';
+    if(count > 0) email = `${first_name}.${surname}.${count}@cidenet.com.${country}`.toLowerCase();
+    else email = `${first_name}.${surname}@cidenet.com.${country}`.toLowerCase();
     req.body['email'] = email;
     const employee = new Employee(req.body);
 
