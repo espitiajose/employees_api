@@ -6,7 +6,8 @@ const { inputValidator } = require('../middlewares/input-validator');
 
 const router = Router();
 
-router.get('', [], controller.employeeListPagination);
+router.get('/list', [], controller.employeeListPagination);
+router.get('/list/inactives', [], controller.employeeDeletedListPagination);
 
 router.post('/create', [
     check('surname').custom(textValidatorRequire),

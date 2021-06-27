@@ -24,7 +24,24 @@ const employeeListPagination = async (req = request, res = response) => {
 
     const [total, data] = await Promise.all([
         Employee.countDocuments({status: true}),
-        Employee.find({status: true})
+        Employee.find({status: true}).sort({createdDate: 'desc'})
+        .skip(+from)
+        .limit(+limit)
+    ]);        
+
+    res.status(200).json({
+        total,
+        data
+    });
+}
+
+const employeeDeletedListPagination = async (req = request, res = response) => {
+
+    const { from = 0, limit = 10 } = req.query;
+
+    const [total, data] = await Promise.all([
+        Employee.countDocuments({status: false}),
+        Employee.find({status: false}).sort({createdDate: 'desc'})
         .skip(+from)
         .limit(+limit)
     ]);        
@@ -78,6 +95,7 @@ const existEmployeeValidator = async (id) => {
 module.exports = {
     employeeCreate,
     employeeListPagination,
+    employeeDeletedListPagination,
     employeeUpdate,
     employeeDelete,
     existEmailValidator,
