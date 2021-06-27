@@ -58,7 +58,7 @@ const employeeDeletedListPagination = async (req = request, res = response) => {
 const employeeUpdate = async (req = request, res = response) => {
 
     const { id } = req.params;
-    const {email, ...all} = req.body; 
+    const {email, _id, status, createdDate, ...all} = req.body; 
     const employee = await Employee.findByIdAndUpdate(id, all);
 
     res.status(200).json({
@@ -75,6 +75,16 @@ const employeeDelete = async (req = request, res = response) => {
 
     res.status(200).json({
         msg: 'Empleado eliminado exitosamente',
+    })
+}
+
+const employeeActive = async (req = request, res = response) => {
+
+    const { id } = req.params;
+    const employee = await Employee.findByIdAndUpdate(id, {status: true});
+
+    res.status(200).json({
+        msg: 'Empleado activado exitosamente',
     })
 }
 
@@ -99,6 +109,7 @@ module.exports = {
     employeeDeletedListPagination,
     employeeUpdate,
     employeeDelete,
+    employeeActive,
     existEmailValidator,
     existEmployeeValidator,
     existDocumentValidator

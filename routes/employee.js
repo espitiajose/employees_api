@@ -40,5 +40,11 @@ router.delete('/:id', [
     inputValidator
 ], controller.employeeDelete);
 
+router.put('/:id', [
+    check('id', 'No es un ID válido').isMongoId(),
+    check('id').custom(controller.existEmployeeValidator),
+    inputValidator
+], controller.employeeActive);
+
 
 module.exports = router;
