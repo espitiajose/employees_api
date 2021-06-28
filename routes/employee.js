@@ -30,7 +30,6 @@ router.put('/update/:id', [
     check('secondSurname').custom(textValidatorNotRequire),
     check('first_name').custom(textValidatorNotRequire),
     check('second_name').custom(textValidatorNotRequire),
-    check('document').custom(textValidatorNotRequire),
     inputValidator
 ], controller.employeeUpdate);
 
