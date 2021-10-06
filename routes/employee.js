@@ -33,7 +33,7 @@ router.put('/update/:id', [
     inputValidator
 ], controller.employeeUpdate);
 
-router.delete('/:id', [
+router.delete('/:id', [ 
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom(controller.existEmployeeValidator),
     inputValidator
